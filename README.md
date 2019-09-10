@@ -48,7 +48,7 @@ Creates a new item with the text sent in the POST body JSON.
 **Body:**
 ```json
 {
-    "text": string
+    "text": "A string"
 }
 ```
 
@@ -65,9 +65,11 @@ Returns
 ```json
 {
     "success": true,
-    "newId": <New item id here>
+    "newId": 1
 }
 ```
+
+The `newId` value will refer to the id of the new todo item created. This is then used to remove the item.
 
 **DELETE: /api/items/:id**
 
