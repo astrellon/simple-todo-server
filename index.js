@@ -21,7 +21,9 @@ function addItem(text)
 
 function removeItem(id)
 {
+    const oldLength = items.length
     items = items.filter(item => item.id !== id)
+    return items.length != oldLength
 }
 
 // Handling URL routing
@@ -37,19 +39,33 @@ app.get('/api/items', (req, res) =>
 
 app.post('/api/items', (req, res) =>
 {
-    const text = req.body.text
-    const newId = addItem(text)
+    try
+    {
+        const text = req.body.text
+        const newId = addItem(text)
 
-    res.json({ success: true, newId })
+        res.json({ success: true, newId })
+    }
+    catch (error)
+    {
+        res.json({ success: false, error })
+    }
 })
 
 app.delete('/api/items/:id', (req, res) =>
 {
-    const id = parseInt(req.params.id)
+    try
+    {
+        const id = parseInt(req.params.id)
 
-    removeItem(id)
+        const removed = removeItem(id)
 
-    res.json({ success: true })
+        res.json({ success: true, removed })
+    }
+    catch (error)
+    {
+        res.json({ success: false, error })
+    }
 })
 
 // Start server
