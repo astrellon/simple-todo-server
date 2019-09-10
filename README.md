@@ -71,6 +71,8 @@ Returns
 
 The `newId` value will refer to the id of the new todo item created. This is then used to remove the item.
 
+The `success` value indicates if there was an exception.
+
 **DELETE: /api/items/:id**
 
 Deletes an item with the given id
@@ -82,7 +84,11 @@ Returns
 ```json
 {
     "success": true,
-    "removed": true / false
+    "removed": true
 }
 ```
+
+The `removed` value indicates if the item was removed or not because it was not found.
+
+This differs from `success` as that indicates if there was an exception.
 
